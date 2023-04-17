@@ -1,0 +1,22 @@
+GET http://localhost:8080/api/employees/
+
+###
+POST http://localhost:8080/api/employees/
+Content-Type: application/json
+
+{
+  "name": "Valaki",
+  "level": "Godlike",
+  "position": "Joker"
+}
+
+###
+DELETE http://localhost:8080/api/employees/63fc6e4bca1cb463caa21779
+
+###
+PATCH http://localhost:8080/api/employees/63fc6e4bca1cb463caa21779
+Content-Type:  application/json
+
+{
+  "name": "asd"
+}
