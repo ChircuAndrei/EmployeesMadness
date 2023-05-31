@@ -4,10 +4,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import Layout from "./Pages/Layout";
+import { EmployeeSearch } from "./Pages/EmployeeSearch";
 import ErrorPage from "./Pages/ErrorPage";
 import EmployeeList from "./Pages/EmployeeList";
+import Missing from "./Pages/Missing";
+import EquipmentList from "./Pages/Equipment";
+import Similar from "./Pages/Similar";
 import EmployeeCreator from "./Pages/EmployeeCreator";
 import EmployeeUpdater from "./Pages/EmployeeUpdater";
+import EquipmentUpdater from "./Pages/EquipmentUpdater";
 
 import "./index.css";
 import TableTest from "./Pages/TableTest";
@@ -39,6 +44,31 @@ const router = createBrowserRouter([
         path: "/form-test",
         element: <FormTest />,
       },
+      {
+        path: "/employees/:search",
+        element: <EmployeeSearch />,
+      },
+      {
+        path: "/missing",
+        element: <Missing />,
+      },
+      {
+        path: "/equipment",
+        element: <EquipmentList />,
+      },
+      {
+        path: "/equipment/:id",
+        element: <EquipmentUpdater />,
+      },
+      {
+        path: "/:sortBy/:sortOrder",
+        element: <EmployeeList />,
+      },
+      {
+        path: "/similar/",
+        element:<Similar />,
+      }
+
     ],
   },
 ]);

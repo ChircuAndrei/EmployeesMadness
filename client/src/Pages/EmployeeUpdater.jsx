@@ -21,7 +21,6 @@ const fetchEmployee = (id) => {
 const EmployeeUpdater = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [employee, setEmployee] = useState(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [employeeLoading, setEmployeeLoading] = useState(true);

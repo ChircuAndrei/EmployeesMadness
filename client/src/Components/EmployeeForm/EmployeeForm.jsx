@@ -1,4 +1,24 @@
+import { useEffect, useState } from "react";
+
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+
+  const [colors, setColors] = useState([]);
+  const [equipments, setEquipments] = useState([]);
+  async function getColors() {
+    const response = await fetch('/api/colors/');
+    const data = await response.json();
+    setColors(data);
+  }
+  async function getEquipment() {
+    const response = await fetch('/api/equipment/');
+    const data = await response.json();
+    setEquipments(data);
+  }
+  useEffect(() => {
+    getEquipment();
+    getColors();
+  }, []);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -45,7 +65,22 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           id="position"
         />
       </div>
-
+      <div className="control">
+        <label htmlFor="favouriteColor">Favourite Color</label>
+      <select defaultValue={employee ? employee.favouriteColor : null}
+          name="favouriteColor"
+          id="favouriteColor">
+            {colors.map(color => <option key={color._id} value={color._id}>{color.name}</option>)}
+          </select>
+      </div>
+      <div className="control">
+        <label htmlFor="equipment">Equipment</label>
+      <select defaultValue={employee ? employee.equipment : null}
+          name="equipment"
+          id="equipment">
+            {equipments.map(equipment => <option key={equipment._id} value={equipment._id}>{equipment.name}</option>)}
+          </select>
+      </div>
       <div className="buttons">
         <button type="submit" disabled={disabled}>
           {employee ? "Update Employee" : "Create Employee"}
